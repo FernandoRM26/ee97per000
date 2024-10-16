@@ -1,0 +1,143 @@
+{% include 'admin/head.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    Datos del integrante
+                </div>
+                <div class="card-body">
+                    <form action="/admin/integrantes/guardar" method="post", enctype="multipart/form-data">
+                       
+                        <div class="mb-3">
+                            <label for="txtDNI" class="form-label">DNI</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="txtDNI"
+                                id="txtDNI"
+                                aria-describedby="helpId"
+                                placeholder="DNI"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtNombre1" class="form-label">Primer Nombre</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="txtNombre1"
+                                id="txtNombre1"
+                                aria-describedby="helpId"
+                                placeholder="Primer Nombre"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtNombre2" class="form-label">Segundo Nombre</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="txtNombre2"
+                                id="txtNombre2"
+                                aria-describedby="helpId"
+                                placeholder="Segundo Nombre"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtApellido1" class="form-label">Apellido Paterno</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="txtApellido1"
+                                id="txtApellido1"
+                                aria-describedby="helpId"
+                                placeholder="Apellido Paterno"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtApellido2" class="form-label">Apellido Materno</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="txtApellido2"
+                                id="txtApellido2"
+                                aria-describedby="helpId"
+                                placeholder="Apellido Materno"/>
+                        </div>                       
+
+                        <div class="mb-3">
+                            <label for="txtTelefono" class="form-label">Telefono</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="txtTelefono"
+                                id="txtTelefono"
+                                aria-describedby="helpId"
+                                placeholder="Telefono"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtImg" class="form-label">Imagen</label>
+                            <input
+                                type="file"
+                                class="form-control"
+                                name="txtImg"
+                                id="txtImg"
+                                aria-describedby="helpId"
+                                placeholder="Seleccione Imagen"/>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary">
+                            Agregar
+                        </button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apodo</th>
+                            <th>Cargo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for integrante in integrantes %}
+                        <tr>
+                            <td>{{ integrante[1] }}</td>
+                            <td>{{ integrante[2] }}</td>
+                            <td>{{ integrante[3] }}</td>
+                            <td>
+                                <form action="/admin/integrantes/borrar" method="post">
+                                <input value="{{ integrante[0] }}" type="text" name="txtID">
+                                    <button
+                                        type="submit"
+                                        class="btn btn-danger">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>    
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% include 'admin/footer.html' %}
